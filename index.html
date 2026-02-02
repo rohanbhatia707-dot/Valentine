@@ -36,14 +36,8 @@
       to { transform: scale(1); opacity: 1; }
     }
 
-    h1 {
-      color: #ff3e6c;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.6;
-    }
+    h1 { color: #ff3e6c; }
+    p { font-size: 15px; line-height: 1.6; }
 
     button {
       padding: 12px 25px;
@@ -76,17 +70,8 @@
       to { transform: translateY(-120vh); opacity: 1; }
     }
 
-    .center {
-      text-align: center;
-      animation: pop 1s;
-    }
-
-    .big-text {
-      font-size: 42px;
-      font-weight: bold;
-      animation: pulse 1.5s infinite;
-    }
-
+    .center { text-align: center; animation: pop 1s; }
+    .big-text { font-size: 42px; font-weight: bold; animation: pulse 1.5s infinite; }
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.08); }
@@ -97,16 +82,16 @@
 
 <body>
 
+<!-- MUSIC -->
+<audio id="bgMusic" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <!-- PAGE 1 -->
 <div class="card">
   <h1>Hey Atulya ❤️</h1>
-  <p>
-    Even though miles keep us apart,<br>
-    my heart still knows exactly where it belongs.
-  </p>
-
+  <p>Even though miles keep us apart,<br>my heart still knows exactly where it belongs.</p>
   <h1>Will you be my Valentine? 💌</h1>
-
   <button onclick="yesPage()">Yes 💖</button>
   <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
 </div>
@@ -125,73 +110,58 @@
     document.body.innerHTML = `
       <div class="card">
         <h1>You made me smile 🥹❤️</h1>
-        <p>
-          Distance doesn’t change how I feel.<br>
-          It just reminds me how special you are.
-        </p>
+        <p>Distance doesn’t change how I feel.<br>It just reminds me how special you are.</p>
         <button onclick="lovePage()">Next ➜</button>
       </div>
     `;
+    // Keep music playing
+    const existingAudio = document.getElementById('bgMusic');
+    document.body.appendChild(existingAudio);
   }
 
   // PAGE 3
-function lovePage() {
-  document.body.innerHTML = `
-    <div class="center" style="position: relative; z-index: 2;">
-      <div class="big-text">I LOVE YOU MAHI ❤️</div>
-      <p style="font-size:20px; margin-top:10px;">
-        Always. No matter the distance.
-      </p>
-    </div>
-  `;
-
-  const totalPhotos = 12;
-  
-  // Define positions for vertical photos to avoid overlap
-  const positions = [
-    // TOP 3
-    {top:"5%", left:"20%", width:"100px"},
-    {top:"5%", left:"45%", width:"100px"},
-    {top:"5%", left:"70%", width:"100px"},
-    // LEFT 3
-    {top:"25%", left:"5%", width:"80px"},
-    {top:"45%", left:"5%", width:"80px"},
-    {top:"65%", left:"5%", width:"80px"},
-    // RIGHT 3
-    {top:"25%", left:"85%", width:"80px"},
-    {top:"45%", left:"85%", width:"80px"},
-    {top:"65%", left:"85%", width:"80px"},
-    // BOTTOM 3
-    {top:"75%", left:"20%", width:"100px"},
-    {top:"75%", left:"45%", width:"100px"},
-    {top:"75%", left:"70%", width:"100px"},
-  ];
-
-  for (let i = 1; i <= totalPhotos; i++) {
-    const img = document.createElement("img");
-    img.src = `photo${i}.jpeg`;
-    img.style.position = "fixed";
-    img.style.top = positions[i-1].top;
-    img.style.left = positions[i-1].left;
-    img.style.width = positions[i-1].width;
-    img.style.borderRadius = "18px";
-    img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
-    img.style.transform = "translate(0,0)";
-    img.style.animation = `float${i} ${15 + i}s ease-in-out infinite alternate`;
-    document.body.appendChild(img);
-
-    // Create small floating animation for each photo
-    const style = document.createElement("style");
-    style.innerHTML = `
-      @keyframes float${i} {
-        from { transform: translate(0px, 0px); }
-        to { transform: translate(${Math.random()*20 - 10}px, ${Math.random()*20 - 10}px); }
-      }
+  function lovePage() {
+    document.body.innerHTML = `
+      <div class="center" style="position: relative; z-index: 2;">
+        <div class="big-text">I LOVE YOU MAHI ❤️</div>
+        <p style="font-size:20px; margin-top:10px;">Always. No matter the distance.</p>
+      </div>
     `;
-    document.head.appendChild(style);
+
+    const existingAudio = document.getElementById('bgMusic');
+    document.body.appendChild(existingAudio);
+
+    const totalPhotos = 12;
+    const positions = [
+      {top:"5%", left:"20%", width:"100px"}, {top:"5%", left:"45%", width:"100px"}, {top:"5%", left:"70%", width:"100px"},
+      {top:"25%", left:"5%", width:"80px"}, {top:"45%", left:"5%", width:"80px"}, {top:"65%", left:"5%", width:"80px"},
+      {top:"25%", left:"85%", width:"80px"}, {top:"45%", left:"85%", width:"80px"}, {top:"65%", left:"85%", width:"80px"},
+      {top:"75%", left:"20%", width:"100px"}, {top:"75%", left:"45%", width:"100px"}, {top:"75%", left:"70%", width:"100px"},
+    ];
+
+    for (let i = 1; i <= totalPhotos; i++) {
+      const img = document.createElement("img");
+      img.src = `photo${i}.jpeg`;
+      img.style.position = "fixed";
+      img.style.top = positions[i-1].top;
+      img.style.left = positions[i-1].left;
+      img.style.width = positions[i-1].width;
+      img.style.borderRadius = "18px";
+      img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
+      img.style.transform = "translate(0,0)";
+      img.style.animation = `float${i} ${15 + i}s ease-in-out infinite alternate`;
+      document.body.appendChild(img);
+
+      const style = document.createElement("style");
+      style.innerHTML = `
+        @keyframes float${i} {
+          from { transform: translate(0px, 0px); }
+          to { transform: translate(${Math.random()*20 - 10}px, ${Math.random()*20 - 10}px); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
   }
-}
-       
 
   // LOTS OF HEARTS 💖
   setInterval(() => {
