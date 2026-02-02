@@ -135,7 +135,7 @@
   }
 
   // PAGE 3
- function lovePage() {
+function lovePage() {
   document.body.innerHTML = `
     <div class="center">
       <div class="big-text">I LOVE YOU MAHI ❤️</div>
@@ -145,11 +145,11 @@
     </div>
   `;
 
-  const totalPhotos = 12;
+  const totalPhotos = 12; // you have 12 photos
 
   for (let i = 1; i <= totalPhotos; i++) {
     const img = document.createElement("img");
-    img.src = `photo${i}.jpeg`;
+    img.src = `photo${i}.jpeg`; //
     img.style.position = "fixed";
     img.style.width = "120px";
     img.style.borderRadius = "18px";
@@ -159,15 +159,12 @@
     img.style.animation = `move${i} ${20 + i}s linear infinite alternate`;
     document.body.appendChild(img);
 
+    // Create a unique animation for each photo
     const style = document.createElement("style");
     style.innerHTML = `
       @keyframes move${i} {
-        from {
-          transform: translate(0, 0);
-        }
-        to {
-          transform: translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px);
-        }
+        from { transform: translate(0, 0); }
+        to { transform: translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px); }
       }
     `;
     document.head.appendChild(style);
