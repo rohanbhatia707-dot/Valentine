@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>For You ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
     body {
       margin: 0;
@@ -79,13 +78,11 @@
     }
   </style>
 </head>
-
 <body>
 
 <!-- MUSIC -->
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 
 <!-- PAGE 1 -->
@@ -110,7 +107,7 @@
   // Start music on first click and go to next page
   function startMusic() {
     const music = document.getElementById('bgMusic');
-    music.play().catch(e => console.log("Autoplay blocked, user interacted"));
+    music.play().catch(e => console.log("Autoplay blocked"));
     yesPage();
   }
 
@@ -152,7 +149,7 @@
 
     for (let i = 1; i <= totalPhotos; i++) {
       const img = document.createElement("img");
-      img.src = `photo${i}.jpeg`;
+      img.src = `photo${i}.jpeg`; // make sure photos are named photo1.jpeg → photo12.jpeg
       img.style.position = "fixed";
       img.style.top = positions[i-1].top;
       img.style.left = positions[i-1].left;
@@ -188,6 +185,6 @@
     }
   }, 300);
 </script>
-
 </body>
 </html>
+
