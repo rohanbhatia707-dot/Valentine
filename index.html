@@ -80,17 +80,12 @@
 </head>
 <body>
 
-<!-- MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
-
 <!-- PAGE 1 -->
 <div class="card">
   <h1>Hey Atulya ❤️</h1>
   <p>Even though miles keep us apart,<br>my heart still knows exactly where it belongs.</p>
   <h1>Will you be my Valentine? 💌</h1>
-  <button onclick="startMusic()">Yes 💖</button>
+  <button onclick="yesPage()">Yes 💖</button>
   <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
 </div>
 
@@ -104,13 +99,6 @@
     noBtn.style.top = y + "px";
   }
 
-  // Start music on first click and go to next page
-  function startMusic() {
-    const music = document.getElementById('bgMusic');
-    music.play().catch(e => console.log("Autoplay blocked"));
-    yesPage();
-  }
-
   // PAGE 2
   function yesPage() {
     document.body.innerHTML = `
@@ -120,9 +108,6 @@
         <button onclick="lovePage()">Next ➜</button>
       </div>
     `;
-    // Keep music playing
-    const existingAudio = document.getElementById('bgMusic');
-    document.body.appendChild(existingAudio);
   }
 
   // PAGE 3
@@ -133,10 +118,6 @@
         <p style="font-size:20px; margin-top:10px;">Always. No matter the distance.</p>
       </div>
     `;
-
-    // Keep music playing
-    const existingAudio = document.getElementById('bgMusic');
-    document.body.appendChild(existingAudio);
 
     // 12 photos arranged neatly
     const totalPhotos = 12;
@@ -149,7 +130,7 @@
 
     for (let i = 1; i <= totalPhotos; i++) {
       const img = document.createElement("img");
-      img.src = `photo${i}.jpeg`; // make sure photos are named photo1.jpeg → photo12.jpeg
+      img.src = `photo${i}.jpeg`; // ensure your photos are named photo1.jpeg → photo12.jpeg
       img.style.position = "fixed";
       img.style.top = positions[i-1].top;
       img.style.left = positions[i-1].left;
@@ -185,6 +166,7 @@
     }
   }, 300);
 </script>
+
 </body>
 </html>
 
