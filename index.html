@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ff758c, #ff7eb3);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.95);
+      padding: 30px;
+      border-radius: 25px;
+      text-align: center;
+      width: 90%;
+      max-width: 360px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      animation: pop 0.8s ease;
+      color: #333;
+      z-index: 2;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      color: #ff3e6c;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      background: #ff3e6c;
+      color: white;
+    }
+
+    #no {
+      background: #ccc;
+      position: absolute;
+      color: black;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: float linear forwards;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from { transform: translateY(0); opacity: 0; }
+      to { transform: translateY(-120vh); opacity: 1; }
+    }
+
+    .center {
+      text-align: center;
+      animation: pop 1s;
+    }
+
+    .big-text {
+      font-size: 42px;
+      font-weight: bold;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="card">
+  <h1>Hey Atulya ❤️</h1>
+  <p>
+    Even though miles keep us apart,<br>
+    my heart still knows exactly where it belongs.
+  </p>
+
+  <h1>Will you be my Valentine? 💌</h1>
+
+  <button onclick="yesPage()">Yes 💖</button>
+  <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
+</div>
+
+<script>
+  function moveNo() {
+    const noBtn = document.getElementById("no");
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  // PAGE 2
+  function yesPage() {
+    document.body.innerHTML = `
+      <div class="card">
+        <h1>You made me smile 🥹❤️</h1>
+        <p>
+          Distance doesn’t change how I feel.<br>
+          It just reminds me how special you are.
+        </p>
+        <button onclick="lovePage()">Next ➜</button>
+      </div>
+    `;
+  }
+
+  // PAGE 3
+  function lovePage() {
+    document.body.innerHTML = `
+      <div class="center">
+        <div class="big-text">I LOVE YOU MAHI ❤️</div>
+        <p style="font-size:20px; margin-top:15px;">
+          Always. No matter the distance.
+        </p>
+      </div>
+    `;
+  }
+
+  // LOTS OF HEARTS 💖
+  setInterval(() => {
+    for (let i = 0; i < 4; i++) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 16) + "px";
+      heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+  }, 300);
+</script>
+
+</body>
+</html>
