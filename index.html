@@ -83,8 +83,9 @@
 <body>
 
 <!-- MUSIC -->
-<audio id="bgMusic" autoplay loop>
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
 </audio>
 
 <!-- PAGE 1 -->
@@ -92,17 +93,25 @@
   <h1>Hey Atulya ❤️</h1>
   <p>Even though miles keep us apart,<br>my heart still knows exactly where it belongs.</p>
   <h1>Will you be my Valentine? 💌</h1>
-  <button onclick="yesPage()">Yes 💖</button>
+  <button onclick="startMusic()">Yes 💖</button>
   <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 🙃</button>
 </div>
 
 <script>
+  // Move the No button
   function moveNo() {
     const noBtn = document.getElementById("no");
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
+  }
+
+  // Start music on first click and go to next page
+  function startMusic() {
+    const music = document.getElementById('bgMusic');
+    music.play().catch(e => console.log("Autoplay blocked, user interacted"));
+    yesPage();
   }
 
   // PAGE 2
@@ -128,9 +137,11 @@
       </div>
     `;
 
+    // Keep music playing
     const existingAudio = document.getElementById('bgMusic');
     document.body.appendChild(existingAudio);
 
+    // 12 photos arranged neatly
     const totalPhotos = 12;
     const positions = [
       {top:"5%", left:"20%", width:"100px"}, {top:"5%", left:"45%", width:"100px"}, {top:"5%", left:"70%", width:"100px"},
@@ -163,7 +174,7 @@
     }
   }
 
-  // LOTS OF HEARTS 💖
+  // Floating hearts
   setInterval(() => {
     for (let i = 0; i < 4; i++) {
       const heart = document.createElement("div");
