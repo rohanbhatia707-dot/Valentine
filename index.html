@@ -137,7 +137,7 @@
   // PAGE 3
 function lovePage() {
   document.body.innerHTML = `
-    <div class="center">
+    <div class="center" style="position: relative; z-index: 2;">
       <div class="big-text">I LOVE YOU MAHI ❤️</div>
       <p style="font-size:20px; margin-top:10px;">
         Always. No matter the distance.
@@ -145,26 +145,45 @@ function lovePage() {
     </div>
   `;
 
-  const totalPhotos = 12; // you have 12 photos
+  const totalPhotos = 12; // 12 photos
+  const positions = [
+    // TOP 3
+    {top:"5%", left:"20%"},
+    {top:"5%", left:"40%"},
+    {top:"5%", left:"60%"},
+    // LEFT 3
+    {top:"30%", left:"0%"},
+    {top:"45%", left:"0%"},
+    {top:"60%", left:"0%"},
+    // RIGHT 3
+    {top:"30%", left:"80%"},
+    {top:"45%", left:"80%"},
+    {top:"60%", left:"80%"},
+    // BOTTOM 3
+    {top:"75%", left:"20%"},
+    {top:"75%", left:"40%"},
+    {top:"75%", left:"60%"},
+  ];
 
   for (let i = 1; i <= totalPhotos; i++) {
     const img = document.createElement("img");
-    img.src = `photo${i}.jpeg`; //
+    img.src = `photo${i}.jpeg`;
     img.style.position = "fixed";
     img.style.width = "120px";
     img.style.borderRadius = "18px";
     img.style.boxShadow = "0 10px 25px rgba(0,0,0,0.3)";
-    img.style.left = Math.random() * 80 + "vw";
-    img.style.top = Math.random() * 80 + "vh";
-    img.style.animation = `move${i} ${20 + i}s linear infinite alternate`;
+    img.style.top = positions[i-1].top;
+    img.style.left = positions[i-1].left;
+    img.style.transform = `translate(0px,0px)`;
+    img.style.animation = `float${i} ${15 + i}s ease-in-out infinite alternate`;
     document.body.appendChild(img);
 
-    // Create a unique animation for each photo
+    // Create small floating animations for each photo
     const style = document.createElement("style");
     style.innerHTML = `
-      @keyframes move${i} {
-        from { transform: translate(0, 0); }
-        to { transform: translate(${Math.random()*200 - 100}px, ${Math.random()*200 - 100}px); }
+      @keyframes float${i} {
+        from { transform: translate(0px, 0px); }
+        to { transform: translate(${Math.random()*30 - 15}px, ${Math.random()*30 - 15}px); }
       }
     `;
     document.head.appendChild(style);
